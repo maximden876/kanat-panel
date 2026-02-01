@@ -2,95 +2,94 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>KanatnyiRoker • Control</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Если откроешь внутри Telegram, можно будет использовать тему -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>KanatnyiRoker Control</title>
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
   <div class="app">
-    <header class="topbar">
+    <header class="top">
       <div class="brand">
         <div class="logo">🩴</div>
-        <div class="titles">
-          <div class="title">KanatnyiRoker</div>
-          <div class="subtitle">Discord → TG Era</div>
+        <div class="meta">
+          <div class="name">KanatnyiRoker</div>
+          <div class="sub">Discord → TG Era</div>
         </div>
       </div>
 
-      <button class="chip" id="themeBtn" title="Тема">
-        <span>🌙</span><span>Theme</span>
-      </button>
+      <button id="themeBtn" class="pill">🌙 Theme</button>
     </header>
 
     <section class="card hero">
-      <div>
-        <div class="hero-title">Пульт управления</div>
-        <div class="hero-sub">Красивый UI, подключение сделаем позже 😉</div>
+      <div class="hero-left">
+        <div class="title">Пульт управления</div>
+        <div class="desc">Красивый UI, подключение сделаем позже 😄</div>
       </div>
+
       <div class="status">
-        <div class="dot"></div>
-        <div>
-          <div class="status-title">Status</div>
-          <div class="status-sub" id="statusText">Offline (demo)</div>
+        <div class="dot" id="statusDot"></div>
+        <div class="statusText">
+          <div class="label">Status</div>
+          <div class="value" id="statusValue">Online (demo)</div>
         </div>
       </div>
     </section>
 
     <section class="grid">
-      <button class="btn primary" data-action="start">
-        <div class="btn-ico">▶️</div>
-        <div class="btn-txt">
-          <div class="btn-title">Запустить</div>
-          <div class="btn-sub">старт бота</div>
+      <button class="btn blue" data-cmd="start">
+        <div class="icon">▶</div>
+        <div class="txt">
+          <div class="h">Запустить</div>
+          <div class="s">старт бота</div>
         </div>
       </button>
 
-      <button class="btn danger" data-action="stop">
-        <div class="btn-ico">⏹️</div>
-        <div class="btn-txt">
-          <div class="btn-title">Остановить</div>
-          <div class="btn-sub">стоп бота</div>
+      <button class="btn red" data-cmd="stop">
+        <div class="icon">■</div>
+        <div class="txt">
+          <div class="h">Остановить</div>
+          <div class="s">стоп бота</div>
         </div>
       </button>
 
-      <button class="btn glass" data-action="restart">
-        <div class="btn-ico">🔄</div>
-        <div class="btn-txt">
-          <div class="btn-title">Перезапуск</div>
-          <div class="btn-sub">restart</div>
+      <button class="btn gray" data-cmd="restart">
+        <div class="icon">⟲</div>
+        <div class="txt">
+          <div class="h">Перезапуск</div>
+          <div class="s">restart</div>
         </div>
       </button>
 
-      <button class="btn glass" data-action="status">
-        <div class="btn-ico">📊</div>
-        <div class="btn-txt">
-          <div class="btn-title">Статус</div>
-          <div class="btn-sub">uptime/log</div>
+      <button class="btn gray" data-cmd="status">
+        <div class="icon">▦</div>
+        <div class="txt">
+          <div class="h">Статус</div>
+          <div class="s">uptime/log</div>
         </div>
       </button>
     </section>
 
-    <section class="card">
-      <div class="card-head">
+    <section class="card logs">
+      <div class="logs-head">
         <div>
-          <div class="card-title">Логи</div>
-          <div class="card-sub">демо-окно (позже подключим)</div>
+          <div class="title2">Логи</div>
+          <div class="desc2">демо-окно (позже подключим)</div>
         </div>
-        <button class="chip" id="clearBtn">🧹 Clear</button>
+        <button id="clearBtn" class="pill small">🧹 Clear</button>
       </div>
 
-      <pre class="log" id="logBox">[demo] KanatnyiRoker UI loaded…</pre>
+      <pre id="logBox" class="logBox">[demo] KanatnyiRoker UI loaded…
+</pre>
     </section>
 
-    <footer class="footer">
-      <button class="mini" id="aboutBtn">ℹ️ О боте</button>
-      <button class="mini" id="copyBtn">📋 Copy IP</button>
+    <footer class="bottom">
+      <button id="aboutBtn" class="pill wide">ℹ️ О боте</button>
+      <button id="copyBtn" class="pill wide">📋 Copy IP</button>
     </footer>
+
+    <div class="hint" id="hint"></div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
