@@ -2,94 +2,30 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>KanatnyiRoker Control</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🩴 Канат-Панель</title>
+  <link rel="stylesheet" href="style.css?v=1">
 </head>
 <body>
-  <div class="app">
-    <header class="top">
-      <div class="brand">
-        <div class="logo">🩴</div>
-        <div class="meta">
-          <div class="name">KanatnyiRoker</div>
-          <div class="sub">Discord → TG Era</div>
-        </div>
-      </div>
+  <div class="wrap">
+    <h1>🩴 Канат-Панель</h1>
+    <p class="sub">Нажимай кнопки — команды улетят в Telegram-бота ✅</p>
 
-      <button id="themeBtn" class="pill">🌙 Theme</button>
-    </header>
+    <div class="grid">
+      <button id="btnStart" class="btn ok">▶ Запустить</button>
+      <button id="btnStop" class="btn stop">■ Остановить</button>
+      <button id="btnRestart" class="btn warn">⟲ Перезапуск</button>
+      <button id="btnStatus" class="btn info">▦ Статус</button>
+    </div>
 
-    <section class="card hero">
-      <div class="hero-left">
-        <div class="title">Пульт управления</div>
-        <div class="desc">Красивый UI, подключение сделаем позже 😄</div>
-      </div>
+    <div class="logHead">
+      <div>Логи панели</div>
+      <button id="btnClear" class="mini">🧹 Clear</button>
+    </div>
 
-      <div class="status">
-        <div class="dot" id="statusDot"></div>
-        <div class="statusText">
-          <div class="label">Status</div>
-          <div class="value" id="statusValue">Online (demo)</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="grid">
-      <button class="btn blue" data-cmd="start">
-        <div class="icon">▶</div>
-        <div class="txt">
-          <div class="h">Запустить</div>
-          <div class="s">старт бота</div>
-        </div>
-      </button>
-
-      <button class="btn red" data-cmd="stop">
-        <div class="icon">■</div>
-        <div class="txt">
-          <div class="h">Остановить</div>
-          <div class="s">стоп бота</div>
-        </div>
-      </button>
-
-      <button class="btn gray" data-cmd="restart">
-        <div class="icon">⟲</div>
-        <div class="txt">
-          <div class="h">Перезапуск</div>
-          <div class="s">restart</div>
-        </div>
-      </button>
-
-      <button class="btn gray" data-cmd="status">
-        <div class="icon">▦</div>
-        <div class="txt">
-          <div class="h">Статус</div>
-          <div class="s">uptime/log</div>
-        </div>
-      </button>
-    </section>
-
-    <section class="card logs">
-      <div class="logs-head">
-        <div>
-          <div class="title2">Логи</div>
-          <div class="desc2">демо-окно (позже подключим)</div>
-        </div>
-        <button id="clearBtn" class="pill small">🧹 Clear</button>
-      </div>
-
-      <pre id="logBox" class="logBox">[demo] KanatnyiRoker UI loaded…
-</pre>
-    </section>
-
-    <footer class="bottom">
-      <button id="aboutBtn" class="pill wide">ℹ️ О боте</button>
-      <button id="copyBtn" class="pill wide">📋 Copy IP</button>
-    </footer>
-
-    <div class="hint" id="hint"></div>
+    <pre id="logBox" class="logBox">[demo] UI loaded…</pre>
   </div>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=1"></script>
 </body>
 </html>

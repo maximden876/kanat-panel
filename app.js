@@ -1,80 +1,40 @@
-(function () {
-  const tg = window.Telegram?.WebApp;
+const tg = window.Telegram?.WebApp;
 
-  const logBox = document.getElementById("logBox");
-  const clearBtn = document.getElementById("clearBtn");
-  const themeBtn = document.getElementById("themeBtn");
-  const aboutBtn = document.getElementById("aboutBtn");
-  const copyBtn = document.getElementById("copyBtn");
-  const hint = document.getElementById("hint");
+function logLine(text) {
+  const box = document.getElementById("logBox");
+  if (!box) return;
+  const t = new Date().toLocaleTimeString("ru-RU", { hour12: false });
+  box.textContent += `\n[${t}] ${text}`;
+  box.scrollTop = box.scrollHeight;
+}
 
-  const statusDot = document.getElementById("statusDot");
-  const statusValue = document.getElementById("statusValue");
-
-  function log(line) {
-    const t = new Date().toLocaleTimeString("ru-RU", { hour12: false });
-    logBox.textContent += `[${t}] ${line}\n`;
-    logBox.scrollTop = logBox.scrollHeight;
+function sendAction(action) {
+  if (!tg) {
+    logLine(`❌ Открой панель внутри Telegram (нет WebApp API). action=${action}`);
+    alert("Открой панель внутри Telegram 🙂");
+    return;
   }
+  tg.sendData(action); // отправляем просто строку: start/stop/restart/status
+  logLine(`✅ Отправлено: ${action}`);
+  tg.showAlert(`✅ Команда отправлена: ${action}`);
+}
 
-  function toast(text) {
-    hint.textContent = text;
-    hint.classList.add("show");
-    setTimeout(() => hint.classList.remove("show"), 1200);
-  }
-
-  function send(cmd) {
-    if (!tg) {
-      log("Telegram WebApp API не найден (открой внутри Telegram)");
-      toast("Открой внутри Telegram");
-      return;
-    }
-    tg.sendData(cmd);
-    log(`Нажата кнопка: ${cmd}`);
-    toast(`Отправлено: ${cmd}`);
-  }
-
-  document.querySelectorAll("[data-cmd]").forEach((btn) => {
-    btn.addEventListener("click", () => send(btn.dataset.cmd));
-  });
-
-  clearBtn.addEventListener("click", () => {
-    logBox.textContent = "";
-    log("[demo] cleared");
-  });
-
-  themeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-    toast("Theme переключена");
-  });
-
-  aboutBtn.addEventListener("click", () => {
-    toast("KanatnyiRoker 3.0 — Discord→TG");
-    log("Открыто: О боте");
-  });
-
-  copyBtn.addEventListener("click", async () => {
-    const ip = "192.168.0.105"; // можно поменять
-    try {
-      await navigator.clipboard.writeText(ip);
-      toast("IP скопирован");
-      log("Скопирован IP");
-    } catch {
-      toast("Не могу скопировать");
-      log("Clipboard недоступен");
-    }
-  });
-
-  // Telegram cosmetics
+window.addEventListener("load", () => {
   if (tg) {
-    tg.expand();
     tg.ready();
-    log("Opened inside Telegram ✅");
+    tg.expand();
+    logLine("Opened inside Telegram ✅");
   } else {
-    log("Opened in browser (demo mode)");
+    logLine("Opened in browser (demo) ⚠️");
   }
 
-  // Demo status
-  statusDot.classList.add("green");
-  statusValue.textContent = "Online (demo)";
-})();
+  document.getElementById("btnStart")?.addEventListener("click", () => sendAction("start"));
+  document.getElementById("btnStop")?.addEventListener("click", () => sendAction("stop"));
+  document.getElementById("btnRestart")?.addEventListener("click", () => sendAction("restart"));
+  document.getElementById("btnStatus")?.addEventListener("click", () => sendAction("status"));
+
+  document.getElementById("btnClear")?.addEventListener("click", () => {
+    const box = document.getElementById("logBox");
+    if (box) box.textContent = "";
+  });
+});
