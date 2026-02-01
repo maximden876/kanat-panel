@@ -1,58 +1,139 @@
+/* Kanat Panel — dark glass UI (Telegram WebApp friendly) */
+:root{
+  --bg:#0b1020;
+  --card:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.10);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.62);
+  --shadow: 0 20px 60px rgba(0,0,0,.45);
+  --r:22px;
+
+  --primary:#2f6bff;
+  --danger:#ff355a;
+  --info:#28b7ff;
+  --ok:#2ee6a6;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  background:#0b1020;
-  color:#e8eeff;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(47,107,255,.25), transparent 55%),
+              radial-gradient(1000px 700px at 110% 20%, rgba(255,53,90,.18), transparent 60%),
+              radial-gradient(900px 700px at 30% 120%, rgba(40,183,255,.12), transparent 60%),
+              var(--bg);
+  color:var(--text);
+  font: 15px/1.35 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  padding: 16px;
 }
-.wrap{
-  max-width:520px;
-  margin:0 auto;
-  padding:16px;
+
+.wrap{max-width:520px;margin:0 auto}
+.top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding: 10px 4px 14px 4px;
 }
-h1{margin:8px 0 4px;font-size:26px}
-.sub{margin:0 0 14px;color:rgba(232,238,255,.7)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background: linear-gradient(135deg, rgba(47,107,255,.25), rgba(255,255,255,.08));
+  border:1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.title{font-weight:800;font-size:18px;letter-spacing:.2px}
+.sub{color:var(--muted);font-size:12px;margin-top:2px}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.status{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.h{font-weight:800}
+.p{color:var(--muted);font-size:12px;margin-top:4px}
+
+.badge{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:14px;
+  background: rgba(0,0,0,.25);
+  border:1px solid var(--line);
+  min-width: 150px;
+  justify-content:center;
+}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 6px rgba(46,230,166,.12)}
+.txt{font-weight:700;font-size:13px}
+
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
 }
+
 .btn{
-  border:0;
-  padding:14px 12px;
-  border-radius:16px;
-  font-size:16px;
-  font-weight:800;
+  border:1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
   cursor:pointer;
-  color:#fff;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  text-align:left;
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+  transition: transform .08s ease, filter .15s ease;
+  min-height: 74px;
+  display:grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "ic t"
+    "ic s";
+  column-gap: 10px;
+  row-gap: 2px;
 }
-.ok{background:#2f6bff}
-.stop{background:#ff3b5c}
-.warn{background:#6a5cff}
-.info{background:#3bb0ff}
-.logHead{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:14px 0 8px;
-  color:rgba(232,238,255,.85);
-}
-.mini{
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.06);
-  color:#fff;
+.btn:active{transform: scale(.985)}
+.btn .ic{grid-area:ic; font-size:20px; width:30px; display:flex; align-items:flex-start; justify-content:center; padding-top:2px}
+.btn .t{grid-area:t; font-weight:900}
+.btn .s{grid-area:s; color:var(--muted); font-size:12px}
+
+.primary{background: linear-gradient(135deg, rgba(47,107,255,.35), rgba(255,255,255,.06)); border-color: rgba(47,107,255,.45)}
+.danger{background: linear-gradient(135deg, rgba(255,53,90,.32), rgba(255,255,255,.06)); border-color: rgba(255,53,90,.45)}
+.info{background: linear-gradient(135deg, rgba(40,183,255,.28), rgba(255,255,255,.06)); border-color: rgba(40,183,255,.45)}
+.ghost{background: rgba(255,255,255,.05)}
+
+.logs{margin-bottom: 14px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pill{
+  border:1px solid var(--line);
   border-radius:999px;
-  padding:8px 10px;
+  padding:10px 12px;
+  background: rgba(255,255,255,.06);
+  color: var(--text);
   cursor:pointer;
+  font-weight:700;
 }
-.logBox{
-  margin:0;
-  min-height:180px;
-  padding:12px;
-  border-radius:16px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
+
+.logbox{
+  margin: 12px 0 0 0;
+  min-height: 140px;
+  max-height: 240px;
   overflow:auto;
-  white-space:pre-wrap;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size:12px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.28);
+  color: rgba(255,255,255,.88);
+  font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
+
+.bottom{display:grid;grid-template-columns: 1fr 1fr; gap:12px}
+.flat{
+  min-height: 54px;
+  text-align:center;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;
+}
+
+.foot{margin-top:14px;color:var(--muted);font-size:12px;text-align:center}

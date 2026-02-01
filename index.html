@@ -2,30 +2,80 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🩴 Канат-Панель</title>
-  <link rel="stylesheet" href="style.css?v=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Канат-Панель</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
   <div class="wrap">
-    <h1>🩴 Канат-Панель</h1>
-    <p class="sub">Нажимай кнопки — команды улетят в Telegram-бота ✅</p>
+    <header class="top">
+      <div class="brand">
+        <div class="logo">🩴</div>
+        <div>
+          <div class="title">Канат-Панель</div>
+          <div class="sub">Нажимай кнопки — команды улетают в Telegram-бота</div>
+        </div>
+      </div>
+      <button id="themeBtn" class="pill" type="button">🌙 Theme</button>
+    </header>
 
-    <div class="grid">
-      <button id="btnStart" class="btn ok">▶ Запустить</button>
-      <button id="btnStop" class="btn stop">■ Остановить</button>
-      <button id="btnRestart" class="btn warn">⟲ Перезапуск</button>
-      <button id="btnStatus" class="btn info">▦ Статус</button>
-    </div>
+    <section class="card status">
+      <div>
+        <div class="h">Пульт управления</div>
+        <div class="p">Красивый UI — управление через Telegram WebApp ✅</div>
+      </div>
+      <div class="badge" id="statusBadge">
+        <span class="dot" id="statusDot"></span>
+        <span class="txt" id="statusText">Online (webapp)</span>
+      </div>
+    </section>
 
-    <div class="logHead">
-      <div>Логи панели</div>
-      <button id="btnClear" class="mini">🧹 Clear</button>
-    </div>
+    <section class="grid">
+      <button class="btn primary" data-action="start" type="button">
+        <span class="ic">▶️</span>
+        <span class="t">Запустить</span>
+        <span class="s">старт бота</span>
+      </button>
 
-    <pre id="logBox" class="logBox">[demo] UI loaded…</pre>
+      <button class="btn danger" data-action="stop" type="button">
+        <span class="ic">⏹️</span>
+        <span class="t">Остановить</span>
+        <span class="s">стоп бота</span>
+      </button>
+
+      <button class="btn ghost" data-action="restart" type="button">
+        <span class="ic">🔄</span>
+        <span class="t">Перезапуск</span>
+        <span class="s">restart</span>
+      </button>
+
+      <button class="btn info" data-action="status" type="button">
+        <span class="ic">📊</span>
+        <span class="t">Статус</span>
+        <span class="s">uptime/log</span>
+      </button>
+    </section>
+
+    <section class="card logs">
+      <div class="row">
+        <div>
+          <div class="h">Логи</div>
+          <div class="p">то, что ты нажимаешь (и ответы бота)</div>
+        </div>
+        <button id="clearBtn" class="pill" type="button">🧹 Clear</button>
+      </div>
+      <pre id="logBox" class="logbox"></pre>
+    </section>
+
+    <section class="bottom">
+      <button class="btn flat" data-action="about" type="button">ℹ️ О боте</button>
+      <button class="btn flat" data-action="copy_ip" type="button">📋 Copy IP</button>
+    </section>
+
+    <footer class="foot">@KanatnyiRokerTG_bot • WebApp</footer>
   </div>
 
-  <script src="app.js?v=1"></script>
+  <script src="app.js"></script>
 </body>
 </html>
