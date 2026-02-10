@@ -5,6 +5,7 @@
   const themeBtn = document.getElementById("themeBtn");
   const statusText = document.getElementById("statusText");
   const statusDot = document.getElementById("statusDot");
+  const THEME_KEY = "kanat_theme";
 
   const now = () => new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
 
@@ -12,6 +13,24 @@
     if(!logBox) return;
     logBox.textContent += `[${now()}] ${line}\n`;
     logBox.scrollTop = logBox.scrollHeight;
+  }
+
+  function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    if(themeBtn){
+      themeBtn.textContent = theme === "night" ? "☀️ Light" : "🌙 Night";
+    }
+    try{ localStorage.setItem(THEME_KEY, theme); }catch(e){}
+  }
+
+  function initTheme(){
+    const saved = (() => { try{ return localStorage.getItem(THEME_KEY); }catch(e){ return null; } })();
+    if(saved){
+      setTheme(saved);
+      return;
+    }
+    const tgScheme = tg?.colorScheme;
+    setTheme(tgScheme === "dark" ? "night" : "sunrise");
   }
 
   function send(action, payload = {}){
@@ -31,10 +50,14 @@
     }
   }
 
+  initTheme();
   if(tg){
     tg.ready();
     tg.expand();
     tg.MainButton?.hide();
+    tg.onEvent?.("themeChanged", () => {
+      setTheme(tg.colorScheme === "dark" ? "night" : "sunrise");
+    });
     log("Opened inside Telegram ✅");
   }else{
     log("Открой внутри Telegram 🙂");
@@ -62,6 +85,14 @@
         statusText.textContent = "Restart requested";
         statusDot.style.background = "#2f6bff";
       }
+      if(action === "about"){
+        log("Канат-Панель: управление Discord-ботом через Telegram WebApp.");
+        tg?.showPopup?.({
+          title: "О боте",
+          message: "Канат-Панель управляет Discord-ботом через Telegram. Кнопки отправляют команды в TG-бот.",
+          buttons: [{type:"ok"}]
+        });
+      }
       if(action === "copy_ip"){
         const ip = location.host || "";
         if(ip){
@@ -80,6 +111,8 @@
   });
 
   themeBtn?.addEventListener("click", () => {
-    log("Theme toggled 🌙");
+    const next = document.documentElement.dataset.theme === "night" ? "sunrise" : "night";
+    setTheme(next);
+    log(`Тема: ${next}`);
   });
 })();
