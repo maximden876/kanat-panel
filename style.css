@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Unbounded:wght@600;800&display=swap');
 
 :root{
+  /* Fonts */
   --font-body: "Manrope", system-ui, -apple-system, Segoe UI, sans-serif;
   --font-display: "Unbounded", "Manrope", system-ui, sans-serif;
 
+  /* Radius + shadows */
   --r: 20px;
   --shadow: 0 20px 60px rgba(22, 18, 4, .18);
 
+  /* Light theme */
   --bg: #f6efe0;
   --bg-2: #f9f6ee;
   --card: rgba(255, 255, 255, .72);
@@ -133,6 +136,7 @@ body::after{
 }
 .btn:hover{filter: brightness(1.02); box-shadow: 0 20px 50px rgba(22, 18, 4, .2)}
 .btn:active{transform: scale(.985)}
+.btn:focus-visible{outline: 2px solid rgba(43, 124, 255, .6); outline-offset: 2px}
 .btn .ic{grid-area:ic; font-size:20px; width:30px; display:flex; align-items:flex-start; justify-content:center; padding-top:2px}
 .btn .t{grid-area:t; font-weight:900}
 .btn .s{grid-area:s; color:var(--muted); font-size:12px}
@@ -153,6 +157,7 @@ body::after{
   cursor:pointer;
   font-weight:700;
 }
+.pill:focus-visible{outline: 2px solid rgba(43, 124, 255, .6); outline-offset: 2px}
 
 .logbox{
   margin: 12px 0 0 0;
@@ -196,6 +201,7 @@ body::after{
 }
 
 html[data-theme="night"]{
+  /* Dark theme */
   --bg:#0d1016;
   --bg-2:#111827;
   --card: rgba(18, 22, 30, .68);
